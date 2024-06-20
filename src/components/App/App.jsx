@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Description from "../Description/Description";
 import Feedback from "../Feedback/Feedback.jsx";
 import Options from "../Options/Options.jsx";
+import FeedbackText from "../Feedback/FeedbackText/FeedbackText.jsx";
+
 export default function App() {
-  const [types, setTypes] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  });
+  const storageValue = () => {
+    if (JSON.parse(localStorage.getItem("clicksQuantity")) === null) {
+      return { good: 0, neutral: 0, bad: 0 };
+    } else {
+      return JSON.parse(localStorage.getItem("clicksQuantity"));
+    }
+  };
+  const [types, setTypes] = useState(storageValue);
   const updateFeedback = (event) => {
     const type = event.target.textContent.toLowerCase();
     setTypes({
@@ -25,6 +30,10 @@ export default function App() {
   };
   const totalFeedback = types.good + types.neutral + types.bad;
   const positiveFeedback = Math.round((types.good / totalFeedback) * 100);
+
+  useEffect(() => {
+    window.localStorage.setItem("clicksQuantity", JSON.stringify(types));
+  }, [types]);
   return (
     <div>
       <Description />
@@ -42,7 +51,7 @@ export default function App() {
           badType={types.bad}
         />
       ) : (
-        <p>Not feedback yet</p>
+        <FeedbackText>Not feedback yet</FeedbackText>
       )}
     </div>
   );

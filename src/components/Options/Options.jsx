@@ -1,4 +1,4 @@
-import Button from "../Button/Button.jsx";
+import Button from "./Button/Button.jsx";
 export default function Options({ onUpdate, reset, condition }) {
   return (
     <div>

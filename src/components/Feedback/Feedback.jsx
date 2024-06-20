@@ -1,4 +1,4 @@
-import FeedbackText from "../FeedbackText/FeedbackText.jsx";
+import FeedbackText from "./FeedbackText/FeedbackText.jsx";
 export default function Feedback({
   goodType,
   neutralType,
@@ -11,12 +11,10 @@ export default function Feedback({
       <FeedbackText>Good: {goodType}</FeedbackText>
       <FeedbackText>Neutral: {neutralType}</FeedbackText>
       <FeedbackText>Bad: {badType}</FeedbackText>
-      <p>Total: {totalValue}</p>
-      {positivePercent ? (
-        <p>Positive: {positivePercent}%</p>
-      ) : (
-        <p>Positive: 0%</p>
-      )}
+      <FeedbackText>Total: {totalValue}</FeedbackText>
+      <FeedbackText>
+        {positivePercent ? `Positive: ${positivePercent}%` : "Positive: 0%"}
+      </FeedbackText>
     </div>
   );
 }
