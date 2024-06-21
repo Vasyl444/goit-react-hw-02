@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Description from "../Description/Description";
 import Feedback from "../Feedback/Feedback.jsx";
 import Options from "../Options/Options.jsx";
-import FeedbackText from "../Feedback/FeedbackText/FeedbackText.jsx";
+import Notification from "../Notification/Notification.jsx";
 
 export default function App() {
   const storageValue = () => {
@@ -51,7 +51,7 @@ export default function App() {
           badType={types.bad}
         />
       ) : (
-        <FeedbackText>Not feedback yet</FeedbackText>
+        <Notification>Not feedback yet</Notification>
       )}
     </div>
   );
